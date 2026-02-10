@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="al">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Për Ty J❤️D</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@600&display=swap');
+
+        body {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            font-family: 'Poppins', sans-serif;
+            overflow: hidden;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            z-index: 10;
+        }
+
+        h1 {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3.5rem;
+            color: #ff4d6d;
+            margin-bottom: 20px;
+        }
+
+        .gif-container img {
+            width: 200px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .buttons {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        button {
+            padding: 15px 30px;
+            font-size: 1.2rem;
+            border: none;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        #yes-btn {
+            background-color: #28a745;
+            color: white;
+            box-shadow: 0 5px 15px rgba(40, 167, 69, 0.4);
+        }
+
+        #no-btn {
+            background-color: #dc3545;
+            color: white;
+            box-shadow: 0 5px 15px rgba(220, 53, 69, 0.4);
+        }
+
+        /* Kur shtyp PO - Ekrani Final */
+        #success-screen {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            width: 100vw;
+            background: #ff4d6d;
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: 100;
+        }
+
+        #success-screen h1 {
+            color: white;
+            font-size: 4rem;
+            margin-top: 20px;
+        }
+        
+        #success-screen p {
+            color: white;
+            font-size: 2rem;
+            font-family: 'Dancing Script', cursive;
+        }
+        
+        /* Imazhi final */
+        #success-screen img {
+            width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container" id="question-screen">
+        <div class="gif-container">
+            <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExMGIwZHIxN3Z3M3UyMnV4dG54bnA0eXJqYm54bnA0eXJqYm54bnA0eSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9cw/cLS1cfxvGOPVpf9g3y/giphy.gif" alt="Cute Bear">
+        </div>
+
+        <h1>A do bëhesh Valentini im? <br> J❤️D</h1>
+
+        <div class="buttons">
+            <button id="yes-btn" onclick="acceptLove()">PO! ❤️</button>
+            <button id="no-btn" onclick="makeYesBigger()">Jo...</button>
+        </div>
+    </div>
+
+    <div id="success-screen">
+        <img src="https://media.giphy.com/media/26BRv0ThflsHCqDrG/giphy.gif" alt="Happy Hug">
+        <h1>Yeee! E dija! 🎉</h1>
+        <p>J❤️D Përgjithmonë!</p>
+    </div>
+
+    <script>
+        let yesBtn = document.getElementById("yes-btn");
+        let noBtn = document.getElementById("no-btn");
+        let currentSize = 20;
+        let paddingSize = 15;
+
+        const messages = [
+            "Jo...", "Je e sigurt?", "Mendoje prapë!", "Të lutemmm 🥺", 
+            "Më thyhet zemra 💔", "Po qaj tani...", "J❤️D po pret!", 
+            "S'ke zgjidhje tjetër! 😂", "Shtyp PO tani!"
+        ];
+        
+        let messageIndex = 0;
+
+        function makeYesBigger() {
+            currentSize += 15; 
+            paddingSize += 10;
+            yesBtn.style.fontSize = currentSize + "px";
+            yesBtn.style.padding = paddingSize + "px " + (paddingSize * 2) + "px";
+
+            messageIndex = (messageIndex + 1) % messages.length;
+            noBtn.innerText = messages[messageIndex];
+
+            if (currentSize > 100) {
+               yesBtn.style.position = "fixed";
+               yesBtn.style.top = "0";
+               yesBtn.style.left = "0";
+               yesBtn.style.width = "100vw";
+               yesBtn.style.height = "100vh";
+               yesBtn.style.zIndex = "100";
+               yesBtn.innerText = "PO (S'ke nga shkon me) ❤️";
+               noBtn.style.display = "none";
+            }
+        }
+
+        function acceptLove() {
+            document.getElementById("question-screen").style.display = "none";
+            document.getElementById("success-screen").style.display = "flex";
+            createHearts();
+        }
+
+        function createHearts() {
+            setInterval(() => {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.style.position = 'fixed';
+                heart.style.left = Math.random() * 100 + 'vw';
+                heart.style.top = '-10vh';
+                heart.style.fontSize = Math.random() * 30 + 10 + 'px';
+                heart.style.animation = 'fall 3s linear';
+                
+                const style = document.createElement('style');
+                style.innerHTML = `@keyframes fall { to { transform: translateY(110vh); } }`;
+                document.head.appendChild(style);
+
+                document.body.appendChild(heart);
+                setTimeout(() => heart.remove(), 3000);
+            }, 100);
+        }
+    </script>
+</body>
+</html>
